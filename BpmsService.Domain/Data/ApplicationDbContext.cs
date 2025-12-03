@@ -17,6 +17,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        // Transitionها
         modelBuilder.Entity<StepDefinition>()
             .HasMany(s => s.OutgoingTransitions)
             .WithOne(t => t.FromStep)
@@ -28,5 +31,23 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithOne(t => t.ToStep)
             .HasForeignKey(t => t.ToStepId)
             .OnDelete(DeleteBehavior.NoAction);
+
+      
+        modelBuilder.Entity<ProcessDefinition>()
+            .HasMany(p => p.Steps)
+            .WithOne(s => s.ProcessDefinition)
+            .HasForeignKey(s => s.ProcessDefinitionId)
+            .OnDelete(DeleteBehavior.Restrict); // ❗ بهتره این هم Cascade نباشه
+
+      
+     
+        modelBuilder.Entity<StepInstance>()
+            .HasOne(si => si.ProcessInstance)
+            .WithMany(pi => pi.Steps)
+            .HasForeignKey(si => si.ProcessInstanceId)
+            .OnDelete(DeleteBehavior.Cascade); // فقط این مسیر cascade داشته باشه
+
+     
     }
+
 }

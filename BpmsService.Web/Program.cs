@@ -1,7 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using BpmsService.Domain;
 
+var builder = WebApplication.CreateBuilder(args);
+var configurations = builder.Configuration;
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.DomainRegistrations(configurations);
 
 var app = builder.Build();
 
