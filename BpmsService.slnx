@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BpmsService.Domain/BpmsService.Domain.csproj" />
+  <Project Path="BpmsService.Infrastructure/BpmsService.Infrastructure.csproj" />
+  <Project Path="BpmsService.Web/BpmsService.Web.csproj" />
+</Solution>
