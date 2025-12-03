@@ -12,6 +12,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <ProjectReference Include="..\BpmsService.Domain\BpmsService.Domain.csproj" />
+	  <ProjectReference Include="..\BpmsService.Infrastructure\BpmsService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
